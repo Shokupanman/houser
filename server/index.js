@@ -8,6 +8,7 @@ let massive = require('massive')
 let app = express()
 app.use(express.json())
 
+app.get('/api/wizard')
 
 
 massive(CONNECTION_STRING).then(databaseConnection => {

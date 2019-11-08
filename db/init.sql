@@ -1,0 +1,10 @@
+CREATE TABLE houses (
+name VARCHAR(20),
+address VARCHAR(30),
+city VARCHAR(23),
+state VARCHAR(2),
+zip INT
+);
+
+ALTER TABLE houses
+ADD COLUMN id SERIAL PRIMARY KEY;

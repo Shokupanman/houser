@@ -3,10 +3,9 @@ import { Switch, Route, withRouter } from "react-router-dom";
 import House from '../House/House'
 import axios from 'axios';
 
-
 export default class Dashboard extends Component {
-    constructor() {
-        super()
+    constructor(props) {
+        super(props)
         this.state = {
             houses: []
         }
@@ -34,12 +33,14 @@ export default class Dashboard extends Component {
             .then(res => this.getHouses())
     }
     render() {
+
         return (
             <div>
                 <h1>Dashboard</h1>
-                <House />
-
-                <button>Add New Propety</button>
+                <button onClick={() => this.props.history.push('/api/wizard')}> Add New Property </button>
+                {this.state.houses.map(el => {
+                    return <House house={el} deleteHouses={this.deleteHouses} key={el.id} />
+                })}
             </div>
         )
     }

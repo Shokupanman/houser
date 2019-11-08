@@ -21,19 +21,31 @@ export default class Wizard extends Component {
         })
     }
 
+    postHouse() {
+        axios.post('/api/house', this.state)
+            .then(res => {
+                this.history.push('/')
+            })
+    }
+
     render() {
         let { name, address, city, state, zip } = this.state
         return (
 
             <div className='Wzrd'>
                 <section>
-                    <div></div>
+                    <div>
+                        <button onClick={() => this.props.history.push('/')}>X</button>
+                    </div>
                     <div className='inputs'>
                         <input type="text" value={name} onChange={e => this.handleChange('name', e.target.value)} />
                         <input type="text" value={address} onChange={e => this.handleChange('address', e.target.value)} />
                         <input type="text" value={city} onChange={e => this.handleChange('city', e.target.value)} />
                         <input type="text" value={state} onChange={e => this.handleChange('state', e.handleChange)} />
                         <input type="number" value={zip} onChange={e => this.handleChange('zip', e.target.value)} />
+                    </div>
+                    <div className='button'>
+                        <button className='phb' onClick={this.postHouse}>POST</button>
                     </div>
                 </section>
             </div>
