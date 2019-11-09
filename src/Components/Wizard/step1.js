@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
-import { Switch, Route, withRouter } from "react-router-dom";
+import { connect } from 'react-redux'
 import axios from 'axios'
 
-export default class step1 extends Component {
+class Step1 extends Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -12,12 +12,18 @@ export default class step1 extends Component {
             state: '',
             zip: 0
         }
+        this.handleChange = this.handleChange(this)
     }
 
     handleChange(prop, value) {
         this.setState({
             [prop]: value
         })
+    }
+
+    componentDidMount() {
+        let { name, address, city, state, zip } = this.props
+        this.setState({ name, address, city, state, zip })
     }
 
     postHouse() {
@@ -43,10 +49,19 @@ export default class step1 extends Component {
                         <input type="number" value={zip} onChange={e => this.handleChange('zip', e.target.value)} />
                     </div>
                     <div>
-                        <button className='phb' onClick={this.postHouse}>POST</button>
+                        <button onClick={() => {
+                            this.props.updateLocal(this.state)
+                            this.props.history.push('/wizard/step2')
+                        }}> >>>> </button>
                     </div>
                 </section>
             </div>
         )
     }
 }
+function stateToPropies(reduxState) {
+    let { name, address, city, state, zip } = reduxState;
+    return { name, address, city, state, zip }
+}
+
+export default connect(stateToPropies, { updateLocal })(Step1)
