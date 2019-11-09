@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import axios from 'axios'
-
+import { updateLocal } from './../../dux/reducer'
 class Step1 extends Component {
     constructor(props) {
         super(props)

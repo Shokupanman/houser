@@ -1,9 +1,8 @@
 import React, { Component } from 'react'
 import { Switch, Route, withRouter } from "react-router-dom";
 
-
 export default function house(props) {
-    let { id, name, address, city, state, zip } = props.house
+    let { id, name, address, city, state, zip, img, mortgage, rent } = props.house
     console.log(name)
     return (
         <div>
@@ -14,6 +13,10 @@ export default function house(props) {
                 <p> State: {state}</p>
                 <p> Zip: {zip}</p>
             </section>
+            <div>
+                <p>Monthly Mortgage: {mortgage}</p>
+                <p>Desired Rent: {rent}</p>
+            </div>
             <button className='deleteButton' onClick={() => props.deleteHouses(id)}>X</button>
         </div>
     )

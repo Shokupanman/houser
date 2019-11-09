@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import axios from 'axios'
-
+import { updateImg } from './../../dux/reducer'
 class Step2 extends Component {
     constructor(props) {
         super(props)

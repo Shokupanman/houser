@@ -1,44 +1,27 @@
-import React, { Component } from 'react'
-import { Switch, Route, withRouter } from "react-router-dom";
-import axios from 'axios'
+import React from 'react';
+import { Route } from 'react-router-dom';
+import { connect } from 'react-redux';
 
+import { clear } from './../../dux/reducer';
+import Step1 from './step1';
+import Step2 from './step2';
+import Step3 from './step3';
 
-export default class Wizard extends Component {
-    constructor(props) {
-        super(props)
-        this.state = {
-            name: '',
-            address: '',
-            city: '',
-            state: '',
-            zip: 0
-        }
-    }
-
-    handleChange(prop, value) {
-        this.setState({
-            [prop]: value
-        })
-    }
-
-    render() {
-        let { name, address, city, state, zip } = this.state
-        return (
-
-            <div className='Wzrd'>
-                <section>
-                    <div>
-                        <button onClick={() => this.props.history.push('/')}>X</button>
-                    </div>
-                    <div className='inputs'>
-                        <input type="text" value={name} onChange={e => this.handleChange('name', e.target.value)} />
-                        <input type="text" value={address} onChange={e => this.handleChange('address', e.target.value)} />
-                        <input type="text" value={city} onChange={e => this.handleChange('city', e.target.value)} />
-                        <input type="text" value={state} onChange={e => this.handleChange('state', e.handleChange)} />
-                        <input type="number" value={zip} onChange={e => this.handleChange('zip', e.target.value)} />
-                    </div>
-                </section>
+function Wizard(props) {
+    return (
+        <div>
+            <div>
+                <h2 >Add New Listing</h2>
+                <button onClick={_ => {
+                    props.clear();
+                    props.history.push('/')
+                }}>Cancel</button>
             </div>
-        )
-    }
+            <Route path='/wizard/step1' component={Step1} />
+            <Route path='/wizard/step2' component={Step2} />
+            <Route path='/wizard/step3' component={Step3} />
+        </div>
+    )
 }
+
+export default connect(null, { clear })(Wizard)

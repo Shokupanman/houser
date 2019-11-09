@@ -22,7 +22,38 @@ export default function reducer(state = initialState, action) {
             return { ...state, ...payload }
         case IMG_INFO:
             return { ...state, img: payload }
-        case MONEYpINFO:
+        case MONEY_INFO:
             return { ...state, ...payload }
+        case CLEAR_INFO:
+            return payload
+        default: return state
+    }
+}
+
+export function updateLocal(locationObj) {
+    return {
+        type: LOCATION_INFO,
+        payload: locationObj
+    }
+}
+
+export function updateImg(imgUrl) {
+    return {
+        type: IMG_INFO,
+        payload: imgUrl
+    }
+}
+
+export function updateMoney(moneyObj) {
+    return {
+        type: MONEY_INFO,
+        payload: moneyObj
+    }
+}
+
+export function clear() {
+    return {
+        type: CLEAR_INFO,
+        payload: initialState
     }
 }

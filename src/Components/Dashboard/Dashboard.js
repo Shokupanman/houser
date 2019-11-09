@@ -19,7 +19,7 @@ export default class Dashboard extends Component {
 
     getHouses() {
         axios
-            .get('/api/houses')
+            .get('/api/pt2/houses')
             .then(res => {
                 this.setState({
                     houses: res.data
@@ -29,7 +29,7 @@ export default class Dashboard extends Component {
 
     deleteHouses(id) {
         axios
-            .delete(`/api/houses/${id}`)
+            .delete(`/api/pt/houses/${id}`)
             .then(res => this.getHouses())
     }
     render() {
@@ -37,7 +37,7 @@ export default class Dashboard extends Component {
         return (
             <div>
                 <h1>Dashboard</h1>
-                <button onClick={() => this.props.history.push('/api/wizard')}> Add New Property </button>
+                <button onClick={() => this.props.history.push('/api/wizard/step1')}> Add New Property </button>
                 {this.state.houses.map(el => {
                     return <House house={el} deleteHouses={this.deleteHouses} key={el.id} />
                 })}
