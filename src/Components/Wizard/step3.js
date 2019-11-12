@@ -32,19 +32,29 @@ class Step3 extends Component {
                 this.setState({
                     rent: value
                 })
+                break;
+            default:
+                break;
         }
     }
 
-    complete() {
-        let { name, address, city, state, zip, img } = this.props;
-        let house = {
-            name, address, city, state, zip, img, ...this.state
-        }
-        axios.post('/api/pt2/house', house)
-            .then(res => {
+    complete = () => {
+        const { mortgage, rent } = this.state;
+        const { name, address, city, state, zip, image } = this.props;
+
+        const body = { name, address, city, state, zip, image, mortgage, rent };
+
+        axios
+            .post(`/api/houses`, body)
+            .then(() => {
+                this.setState({
+                    mortgage: 0,
+                    rent: 0
+                });
                 this.props.clear();
-                this.props.history.push('/')
+                this.props.history.push("/");
             })
+            .catch(err => console.log(err));
     }
     render() {
         return (
@@ -62,7 +72,7 @@ class Step3 extends Component {
                 </div>
                 <button onClick={_ => {
                     this.props.updateMoney(this.state);
-                    this.props.history.push('/wizard/step2');
+                    this.props.history.push('/step2');
                 }}>Previous Step</button>
                 <button onClick={this.complete}>Complete</button>
             </div>

@@ -6,6 +6,7 @@ export default function house(props) {
     console.log(name)
     return (
         <div>
+            <div style={{ backgroundImage: `url('${img}')` }}></div>
             <section>
                 <p>Name: {name}</p>
                 <p>Address: {address}  </p>

@@ -37,7 +37,7 @@ export default class Dashboard extends Component {
         return (
             <div>
                 <h1>Dashboard</h1>
-                <button onClick={() => this.props.history.push('/api/wizard/step1')}> Add New Property </button>
+                <button onClick={() => this.props.history.push('/step1')}> Add New Property </button>
                 {this.state.houses.map(el => {
                     return <House house={el} deleteHouses={this.deleteHouses} key={el.id} />
                 })}
