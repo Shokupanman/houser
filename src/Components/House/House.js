@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Switch, Route, withRouter } from "react-router-dom";
 
-export default function house(props) {
+export default function House(props) {
     let { id, name, address, city, state, zip, img, mortgage, rent } = props.house
     console.log(name)
     return (

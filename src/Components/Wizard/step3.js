@@ -38,7 +38,7 @@ class Step3 extends Component {
         }
     }
 
-    complete = () => {
+    completeButton = () => {
         const { mortgage, rent } = this.state;
         const { name, address, city, state, zip, image } = this.props;
 
@@ -74,7 +74,7 @@ class Step3 extends Component {
                     this.props.updateMoney(this.state);
                     this.props.history.push('/step2');
                 }}>Previous Step</button>
-                <button onClick={this.complete}>Complete</button>
+                <button onClick={this.completeButton}>Complete</button>
             </div>
         );
     }

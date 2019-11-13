@@ -8,8 +8,11 @@ let massive = require('massive')
 let app = express()
 app.use(express.json())
 
-app.get('/api/wizard')
+app.get('/api/houses', ctrl.getHouses)
 
+app.post('/api/houses', ctrl.addHouse)
+
+app.delete('/api/houses/:id', ctrl.deleteHouse)
 
 massive(CONNECTION_STRING).then(databaseConnection => {
     app.set("db", databaseConnection);
